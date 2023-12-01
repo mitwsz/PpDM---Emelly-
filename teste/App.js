@@ -1,16 +1,49 @@
 //tipo o require
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TextInput} from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, Button, TextInput, Alert } from "react-native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-function TelaInicial(){
+function TelaInicial() {
   const navigation = useNavigation();
-  const [text, onChangeText] = React.useState('');
+  const [text, onChangeText] = React.useState("");
   return (
     <View style={styles.container}>
-      <Text>Meu primeiro app no react native! hello world!</Text>
+      <Text style={styles.text}>LiveArt</Text>
+      <Button
+        margin= "40"
+        color= "#000000"
+        title="CADASTRAR"
+        onPress={() => {
+          navigation.navigate("Cadastro");
+        }}
+      ></Button>
+      <Button
+        color= "#000000"
+        title="LOGIN"
+        onPress={() => {
+          navigation.navigate("Login");
+        }}
+      ></Button>
+      <StatusBar style="auto" />
+      <Text>{text}</Text>
+    </View>
+  );
+}
+
+function TelaCadastro() {
+  const navigation = useNavigation();
+  const [text, onChangeText] = React.useState("");
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Cadastro</Text>
+      <TextInput
+
+        placeholder="Nome"
+        keyboardType="name"
+        style={styles.input}
+      />
       <TextInput
         placeholder="E-mail"
         keyboardType="email-address"
@@ -18,101 +51,158 @@ function TelaInicial(){
         onChangeText={onChangeText}
         value={text}
       />
-      <TextInput 
-        placeholder="Senha" 
-        secureTextEntry={true} 
+      <TextInput
+        placeholder="Senha"
+        secureTextEntry={true}
         style={styles.input}
       />
-      <Button title = "CADASTRAR" onPress={()=>{navigation.navigate('Cadastro')}}></Button>
+      <Button 
+        color= "#000000"
+        title="CADASTRAR"
+        onPress={() => {
+          navigation.navigate("Login");
+        }}
+      ></Button>
       <StatusBar style="auto" />
-      <Text>{text}</Text>
     </View>
   );
 }
 
-function TelaCadastro(){
+function TelaLogin() {
+  const navigation = useNavigation();
+  const [text, onChangeText] = React.useState("");
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Login</Text>
+      <TextInput
+        placeholder="E-mail"
+        keyboardType="email-address"
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={text}
+      />
+      <TextInput
+        placeholder="Senha"
+        secureTextEntry={true}
+        style={styles.input}
+      />
+      <Button 
+        color= "#000000"
+        title="ESQUECI A SENHA"
+        onPress={() => {
+          navigation.navigate("Recuperar senha");
+        }}
+      ></Button>
+      <Button 
+        color= "#000000"
+        title="ENTRAR"
+        onPress={() => {
+          navigation.navigate("Começo");
+        }}
+      ></Button>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+function RecuperarSenha() {
+  const navigation = useNavigation();
+  const [text, onChangeText] = React.useState("");
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Esqueceu a senha</Text>
+      <Text>Nova senha</Text>
+      <TextInput
+
+        placeholder="E-mail"
+        keyboardType="email-address"
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={text}
+      />
+      <Button 
+        color= "#000000"
+        title="ENVIAR"
+        onPress={() => {
+          navigation.navigate("Começo");
+        }}
+      ></Button>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+function TelaInicioApp() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Text>Vamos fazer o cadastro!</Text>
+      <Text style={styles.text}>Tela de início do app</Text>
 
-      <Button title = "LOGIN"onPress={()=>{navigation.navigate('Login')}}></Button>
+      <Button 
+        color= "#000000"
+        title="OBRAS"
+        onPress={() => {
+          navigation.navigate("Obras");
+        }}
+      ></Button>
       <StatusBar style="auto" />
     </View>
   );
 }
 
-function TelaLogin(){
+function TelaObras() {
   const navigation = useNavigation();
-    return (
-      <View style={styles.container}>
-        <Text>Vamos fazer o login!</Text>
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Aqui tá as obras dos artistas</Text>
 
-        <Button title = "RECUPERAR SENHA"onPress={()=>{navigation.navigate('Recuperar senha')}}></Button>
-        <StatusBar style="auto" />
-      </View>
-    );
-  }
+      <Button 
+        color= "#000000"
+        title="ARTISTA"
+        onPress={() => {
+          navigation.navigate("Artista");
+        }}
+      ></Button>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
 
-  function RecuperarSenha(){
-    const navigation = useNavigation();
-    return (
-      <View style={styles.container}>
-        <Text>Vamos recuperar sua senha!</Text>
+function TelaArtista() {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Aqui tá a pintura e o artista</Text>
 
-        <Button title = "COMEÇO"onPress={()=>{navigation.navigate('Começo')}}></Button>
-        <StatusBar style="auto" />
-      </View>
-    );
-  }
+      <Button 
+        color= "#000000"
+        title="PERFIL"
+        onPress={() => {
+          navigation.navigate("Perfil");
+        }}
+      ></Button>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
 
-  function TelaInicioApp(){
-    const navigation = useNavigation();
-    return (
-      <View style={styles.container}>
-        <Text>Tela de início do app</Text>
+function TelaPerfil() {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Aqui fica o perfil do usuário</Text>
 
-        <Button title = "OBRAS"onPress={()=>{navigation.navigate('Obras')}}></Button>
-        <StatusBar style="auto" />
-      </View>
-    );
-  }
-
-  function TelaObras(){
-    const navigation = useNavigation();
-    return (
-      <View style={styles.container}>
-        <Text>Aqui tá as obras dos artistas</Text>
-
-        <Button title = "ARTISTA"onPress={()=>{navigation.navigate('Artista')}}></Button>
-        <StatusBar style="auto" />
-      </View>
-    );
-  }
-
-  function TelaArtista(){
-    const navigation = useNavigation();
-    return (
-      <View style={styles.container}>
-        <Text>Aqui tá a pintura e o artista</Text>
-
-        <Button title = "PERFIL"onPress={()=>{navigation.navigate('Perfil')}}></Button>
-        <StatusBar style="auto" />
-      </View>
-    );
-  }
-
-  function TelaPerfil(){
-    const navigation = useNavigation();
-    return (
-      <View style={styles.container}>
-        <Text>Aqui fica o perfil do usuário</Text>
-
-        <Button title = "VOLTAR"onPress={()=>{navigation.navigate('Início')}}></Button>
-        <StatusBar style="auto" />
-      </View>
-    );
-  }
+      <Button 
+        color= "#000000"
+        title="VOLTAR"
+        onPress={() => {
+          navigation.navigate("Início");
+        }}
+      ></Button>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -135,14 +225,21 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#8096AF',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#8096AF",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  text: {
+    fontFamily: "Roboto",
+    fontSize: 40,
+    marginVertical: 20,
   },
   input: {
-   height: 40,
-   margin: 12,
-   borderWidth: 1,
-   padding: 10,
- },
+    height: 40,
+    margin: 15,
+    borderWidth: 1,
+    padding: 25,
+    backgroundColor: "#fff",
+    borderRadius: 6,
+  },
 });
