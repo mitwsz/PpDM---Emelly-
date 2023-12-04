@@ -1,7 +1,7 @@
 //tipo o require
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, TextInput, Alert } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput, Alert, TouchableOpacity } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -11,21 +11,17 @@ function TelaInicial() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>LiveArt</Text>
-      <Button
-        margin= "40"
-        color= "#000000"
-        title="CADASTRAR"
-        onPress={() => {
+      <TouchableOpacity style={styles.button} onPress={() => {
           navigation.navigate("Cadastro");
-        }}
-      ></Button>
-      <Button
-        color= "#000000"
-        title="LOGIN"
-        onPress={() => {
+        }}>
+        <Text style={{color: "#fff"}}>CADASTRAR</Text>
+
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => {
           navigation.navigate("Login");
-        }}
-      ></Button>
+        }}>
+        <Text style={{color: "#fff"}}>LOGIN</Text>
+      </TouchableOpacity>
       <StatusBar style="auto" />
       <Text>{text}</Text>
     </View>
@@ -56,13 +52,11 @@ function TelaCadastro() {
         secureTextEntry={true}
         style={styles.input}
       />
-      <Button 
-        color= "#000000"
-        title="CADASTRAR"
-        onPress={() => {
+      <TouchableOpacity style={styles.button} onPress={() => {
           navigation.navigate("Login");
-        }}
-      ></Button>
+        }}>
+        <Text style={{color: "#fff"}}>CADASTRAR</Text>
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
@@ -86,20 +80,18 @@ function TelaLogin() {
         secureTextEntry={true}
         style={styles.input}
       />
-      <Button 
-        color= "#000000"
-        title="ESQUECI A SENHA"
-        onPress={() => {
-          navigation.navigate("Recuperar senha");
-        }}
-      ></Button>
-      <Button 
-        color= "#000000"
-        title="ENTRAR"
-        onPress={() => {
+      <TouchableOpacity style={styles.button} onPress={() => {
           navigation.navigate("Começo");
-        }}
-      ></Button>
+        }}>
+        <Text style={{color: "#fff"}}>ENTRAR</Text>
+
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => {
+          navigation.navigate("Recuperar senha");
+        }}>
+        <Text style={{color: "#fff"}}>ESQUECI A SENHA</Text>
+
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
@@ -120,13 +112,12 @@ function RecuperarSenha() {
         onChangeText={onChangeText}
         value={text}
       />
-      <Button 
-        color= "#000000"
-        title="ENVIAR"
-        onPress={() => {
+      <TouchableOpacity style={styles.button} onPress={() => {
           navigation.navigate("Começo");
-        }}
-      ></Button>
+        }}>
+        <Text style={{color: "#fff"}}>ENVIAR</Text>
+
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
@@ -137,14 +128,12 @@ function TelaInicioApp() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Tela de início do app</Text>
-
-      <Button 
-        color= "#000000"
-        title="OBRAS"
-        onPress={() => {
+      <TouchableOpacity style={styles.button} onPress={() => {
           navigation.navigate("Obras");
-        }}
-      ></Button>
+        }}>
+        <Text style={{color: "#fff"}}>OBRAS</Text>
+
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
@@ -155,14 +144,12 @@ function TelaObras() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Aqui tá as obras dos artistas</Text>
-
-      <Button 
-        color= "#000000"
-        title="ARTISTA"
-        onPress={() => {
+      <TouchableOpacity style={styles.button} onPress={() => {
           navigation.navigate("Artista");
-        }}
-      ></Button>
+        }}>
+        <Text style={{color: "#fff"}}>ARTISTA</Text>
+
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
@@ -173,14 +160,12 @@ function TelaArtista() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Aqui tá a pintura e o artista</Text>
-
-      <Button 
-        color= "#000000"
-        title="PERFIL"
-        onPress={() => {
+      <TouchableOpacity style={styles.button} onPress={() => {
           navigation.navigate("Perfil");
-        }}
-      ></Button>
+        }}>
+        <Text style={{color: "#fff"}}>PERFIL</Text>
+
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
@@ -191,14 +176,12 @@ function TelaPerfil() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Aqui fica o perfil do usuário</Text>
-
-      <Button 
-        color= "#000000"
-        title="VOLTAR"
-        onPress={() => {
+      <TouchableOpacity style={styles.button} onPress={() => {
           navigation.navigate("Início");
-        }}
-      ></Button>
+        }}>
+        <Text style={{color: "#fff"}}>VOLTAR</Text>
+
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
@@ -233,6 +216,20 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     fontSize: 40,
     marginVertical: 20,
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 5,
+    borderWidth: 8,
+    backgroundColor: '#000000',
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 30,
+    height: 45,
+    width: 150,
+    borderRadius: 10
+
   },
   input: {
     height: 40,
