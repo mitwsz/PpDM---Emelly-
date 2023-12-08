@@ -126,7 +126,7 @@ function RecuperarSenha() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Esqueceu a senha</Text>
-      <Text>Nova senha</Text>
+      <Text style={{ color: "#fff", fontWeight: 'bold'}}>Digite seu e-mail para redefinir a senha</Text>
       <TextInput
         placeholder="E-mail"
         keyboardType="email-address"
@@ -190,6 +190,8 @@ function TelaObras() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
+      <Text style={{color: "#fff", fontFamily: "Roboto", fontSize: 40, marginVertical: 20}}>Obras espressionistas</Text>
+      <View style={styles.align}>
       <Image
         style={styles.image1}
         source={{
@@ -208,6 +210,13 @@ function TelaObras() {
           uri: "https://arteeartistas.com.br/wp-content/uploads/2018/09/Noite-Estrelada-Sobre-o-R%C3%B3dano.-Vincent-van-Gogh.-1888.jpg",
         }}
       />
+      <Image
+        style={styles.image3}
+        source={{
+          uri: "https://beduka.com/blog/wp-content/uploads/2023/02/Imagens@1x_1.png",
+        }}
+      />
+      </View>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
@@ -223,6 +232,7 @@ function TelaObras() {
 
 function TelaArtista() {
   const navigation = useNavigation();
+  const [text, onChangeText] = React.useState("");
   return (
     <View style={styles.container}>
       <Text style={{color: "#fff", borderWidth: 0, backgroundColor: "#43576D", padding: 4, borderRadius: 4, fontWeight: 'bold'}}>O farol, Anita Malffati</Text>
@@ -232,7 +242,39 @@ function TelaArtista() {
           uri: "https://i0.wp.com/www.historiadasartes.com/wp-content/uploads/2017/02/m_farol.jpg?fit=500%2C393&ssl=1",
         }}
       />
-      <Text></Text>
+      <Text style={{color: "#fff", borderWidth: 0, backgroundColor: "#43576D", padding: 4, borderRadius: 4, fontWeight: 'bold'}}>Outras obras...</Text>
+      <View style={styles.align}>
+      <Image
+        style={styles.image3}
+        source={{
+          uri: "https://i0.wp.com/www.historiadasartes.com/wp-content/uploads/2017/11/m_Tropical-Pinacoteca-de-SP.jpg?fit=500%2C371&ssl=1",
+      
+        }}
+      />
+      
+      <Image
+        style={styles.image3}
+        source={{
+          uri: "https://d3swacfcujrr1g.cloudfront.net/img/uploads/2000/01/006390001019.jpg",
+        }}
+      />
+      </View>
+      <Text style={{color: "#fff", borderWidth: 0, backgroundColor: "#43576D", padding: 4, borderRadius: 4, fontWeight: 'bold'}}>Descreva o que você acha da obra</Text>
+      <TextInput
+        placeholder="Resenha"
+        keyboardType="email-address"
+        style={styles.input}
+        onChangeText={onChangeText}
+        value={text}
+      />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate("Começo");
+        }}
+      >
+        <Text style={{ color: "#fff", fontWeight: 'bold'}}>ENVIAR</Text>
+      </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
@@ -257,7 +299,9 @@ function TelaPerfil() {
           uri: "https://w7.pngwing.com/pngs/1000/665/png-transparent-computer-icons-profile-s-free-angle-sphere-profile-cliparts-free.png",
         }}
       />
-      <Text style={{color: "#fff", borderWidth: 0, backgroundColor: "#43576D", padding: 4, borderRadius: 4, width: 100, textAlign: "center",}}>@usuario</Text>
+      <Text style={{color: "#fff", borderWidth: 0, backgroundColor: "#43576D", padding: 4, borderRadius: 4, width: 100, textAlign: "center", fontWeight: 'bold'}}>@usuario</Text>
+      <Text style={{color: "#fff", borderWidth: 0, backgroundColor: "#43576D", padding: 4, borderRadius: 4, width: 170, textAlign: "center", justifyContent: "center", fontWeight: 'bold'}}>Informações pessoais</Text>
+      <Text style={{color: "#fff", borderWidth: 0, backgroundColor: "#43576D", padding: 4, borderRadius: 4, width: 100, textAlign: "center", fontWeight: 'bold'}}>Sair</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
@@ -276,14 +320,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Início" component={TelaInicial} />
-        <Stack.Screen name="Cadastro" component={TelaCadastro} />
-        <Stack.Screen name="Login" component={TelaLogin} />
-        <Stack.Screen name="Recuperar senha" component={RecuperarSenha} />
-        <Stack.Screen name="Começo" component={TelaInicioApp} />
-        <Stack.Screen name="Obras" component={TelaObras} />
-        <Stack.Screen name="Artista" component={TelaArtista} />
-        <Stack.Screen name="Perfil" component={TelaPerfil} />
+        <Stack.Screen name="Início" component={TelaInicial} options={{headerShown:false}}/>
+        <Stack.Screen name="Cadastro" component={TelaCadastro} options={{headerShown:false}}/>
+        <Stack.Screen name="Login" component={TelaLogin} options={{headerShown:false}}/>
+        <Stack.Screen name="Recuperar senha" component={RecuperarSenha} options={{headerShown:false}}/>
+        <Stack.Screen name="Começo" component={TelaInicioApp} options={{headerShown:false}}/>
+        <Stack.Screen name="Obras" component={TelaObras} options={{headerShown:false}}/>
+        <Stack.Screen name="Artista" component={TelaArtista} options={{headerShown:false}}/>
+        <Stack.Screen name="Perfil" component={TelaPerfil} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -309,18 +353,12 @@ const styles = StyleSheet.create({
     fontFamily: "sans-serif",
     textAlignalign: "left",
   },
-  text3: {
-
-  },
-  text4: {
-
-  },
   image: {
     width: "200px",
     height: "200px",
     borderRadius: "100px",
     borderWidth: 5,
-    backgroundColor: "#43576D",
+    borderColor: '#43576D'
   },
   button: {
     justifyContent: "center",
@@ -370,5 +408,8 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     fontSize: 20,
     marginVertical: 10,
+  },
+  align:{
+    flexDirection: "row",
   },
 });
